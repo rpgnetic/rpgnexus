@@ -4,6 +4,7 @@ import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import styles from './styles.module.css';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 export default function Profile() {
     const { data: session, status } = useSession();
@@ -24,17 +25,19 @@ export default function Profile() {
     }
 
     return (
-        <div className={styles.profilePage}>
-            <div className={styles.content}>
-                <h1 className={styles.title}>Perfil do Usuário</h1>
-                <div className={styles.userInfo}>
-                    <p><strong>Nome:</strong> {session?.user?.name}</p>
-                    <p><strong>Email:</strong> {session?.user?.email}</p>
+        <ProtectedRoute>
+            <div className={styles.profilePage}>
+                <div className={styles.content}>
+                    <h1 className={styles.title}>Perfil do Usuário</h1>
+                    <div className={styles.userInfo}>
+                        <p><strong>Nome:</strong> {session?.user?.name}</p>
+                        <p><strong>Email:</strong> {session?.user?.email}</p>
+                    </div>
+                    <button onClick={() => signOut()} className={styles.signOutButton}>
+                        Sair
+                    </button>
                 </div>
-                <button onClick={() => signOut()} className={styles.signOutButton}>
-                    Sair
-                </button>
             </div>
-        </div>
+        </ProtectedRoute>
     );
 }
