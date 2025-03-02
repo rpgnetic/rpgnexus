@@ -1,84 +1,103 @@
 .container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #1a1c2c 0%, #2a2d3e 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #1a1c2c 0%, #2a2d3e 100%);
 }
 
 .formWrapper {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 480px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 480px;
 }
 
 .title {
-    text-align: center;
-    color: #2a2d3e;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    font-weight: 600;
+  text-align: center;
+  color: #2a2d3e;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .inputGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .inputGroup label {
-    color: #4a4a4a;
-    font-size: 0.9rem;
-    font-weight: 500;
+  color: #4a4a4a;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .inputGroup input {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
 .inputGroup input:focus {
-    outline: none;
-    border-color: #6366f1;
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
 }
 
 .submitButton {
-    background: #6366f1;
-    color: white;
-    padding: 1rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 1rem;
+  background: #6366f1;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
 }
 
 .submitButton:hover {
-    background: #4f46e5;
+  background: #4f46e5;
+}
+
+.googleButton {
+  background: #4285f4;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.googleButton:hover {
+  background: #357ae8;
 }
 
 @media (max-width: 480px) {
-    .formWrapper {
-        padding: 1.5rem;
-    }
-    
-    .title {
-        font-size: 1.5rem;
-    }
+  .formWrapper {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
 }

@@ -68,10 +68,7 @@
   padding: 0 20px;
   border: none;
   border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -168,101 +165,212 @@ a.secondary {
 }
 
 .homePage {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #1a1c2c 0%, #2a2d3e 100%);
-    padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1a1c2c 0%, #2a2d3e 100%);
+  padding: 20px;
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
 }
 
 .logoContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .logo {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
 }
 
 .title {
-    color: white;
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    margin: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .buttonContainer {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 1rem;
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
-.button, .buttonOutline {
-    padding: 1rem 2.5rem;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    min-width: 160px;
-    text-align: center;
+.button,
+.buttonOutline {
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-width: 160px;
+  text-align: center;
 }
 
 .button {
-    background: #6366f1;
-    color: white;
-    border: 2px solid #6366f1;
+  background: #6366f1;
+  color: white;
+  border: 2px solid #6366f1;
 }
 
 .button:hover {
-    background: #4f46e5;
-    border-color: #4f46e5;
-    transform: translateY(-2px);
+  background: #4f46e5;
+  border-color: #4f46e5;
+  transform: translateY(-2px);
 }
 
 .buttonOutline {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
 }
 
 .buttonOutline:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.cardTitle {
+  text-align: center;
+  color: #2a2d3e;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputGroup label {
+  color: #4a4a4a;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.inputGroup input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+.submitButton {
+  background: #6366f1;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submitButton:hover {
+  background: #4f46e5;
+}
+
+.googleButton {
+  background: #4285f4;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.googleButton:hover {
+  background: #357ae8;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.link {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {
-    .title {
-        font-size: 2rem;
-    }
+  .title {
+    font-size: 2rem;
+  }
 
-    .buttonContainer {
-        flex-direction: column;
-        width: 100%;
-        max-width: 280px;
-    }
+  .buttonContainer {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+  }
 
-    .button, .buttonOutline {
-        width: 100%;
-        padding: 0.8rem 1.5rem;
-    }
+  .button,
+  .buttonOutline {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+  }
 
-    .logo {
-        width: 150px;
-        height: 150px;
-    }
+  .logo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .cardTitle {
+    font-size: 1.5rem;
+  }
 }

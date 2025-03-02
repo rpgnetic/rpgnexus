@@ -1,82 +1,133 @@
 'use client';
 
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { registerSchema } from '@/lib/schemas';
+import { z } from 'zod';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
 import styles from './styles.module.css';
+import { signIn } from 'next-auth/react';
+
+type RegisterFormValues = z.infer<typeof registerSchema>;
 
 export default function Register() {
-    const [formData, setFormData] = useState({
-        fullName: '',
-        username: '',
-        email: '',
-        password: ''
+    const form = useForm<RegisterFormValues>({
+        resolver: zodResolver(registerSchema),
+        defaultValues: {
+            fullName: '',
+            username: '',
+            email: '',
+            password: ''
+        }
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
+    const onSubmit = async (data: RegisterFormValues) => {
+        try {
+            console.log(data);
+        } catch (error) {
+            console.error('Erro ao registrar:', error);
+        }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log(formData);
+    const handleGoogleSignIn = async () => {
+        try {
+            await signIn('google');
+        } catch (error) {
+            console.error('Erro ao fazer login com Google:', error);
+        }
     };
 
     return (
         <div className={styles.container}>
             <div className={styles.formWrapper}>
-                <h1 className={styles.title}>Criar Conta</h1>
-                <form onSubmit={handleSubmit} className={styles.form}>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="fullName">Nome Completo</label>
-                        <input
-                            type="text"
-                            id="fullName"
-                            name="fullName"
-                            value={formData.fullName}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="username">Usuário</label>
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="email">E-mail</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="password">Senha</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className={styles.submitButton}>
-                        Registrar
-                    </button>
-                </form>
+                <Card>
+                    <CardHeader>
+                        <CardTitle className={styles.title}>Criar Conta</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
+                                <FormField
+                                    control={form.control}
+                                    name="fullName"
+                                    render={({ field }) => (
+                                        <FormItem className={styles.inputGroup}>
+                                            <FormLabel>Nome Completo</FormLabel>
+                                            <FormControl>
+                                                <Input {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="username"
+                                    render={({ field }) => (
+                                        <FormItem className={styles.inputGroup}>
+                                            <FormLabel>Usuário</FormLabel>
+                                            <FormControl>
+                                                <Input {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="email"
+                                    render={({ field }) => (
+                                        <FormItem className={styles.inputGroup}>
+                                            <FormLabel>E-mail</FormLabel>
+                                            <FormControl>
+                                                <Input type="email" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="password"
+                                    render={({ field }) => (
+                                        <FormItem className={styles.inputGroup}>
+                                            <FormLabel>Senha</FormLabel>
+                                            <FormControl>
+                                                <Input type="password" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <Button type="submit" className={styles.submitButton}>
+                                    Registrar
+                                </Button>
+                            </form>
+                        </Form>
+                        <Button onClick={handleGoogleSignIn} className={styles.googleButton}>
+                            Registrar com Google
+                        </Button>
+                    </CardContent>
+                </Card>
             </div>
         </div>
     );
