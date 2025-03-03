@@ -14,10 +14,10 @@ export function useAuth() {
     try {
       setIsLoading(true);
       setError(null);
-      
+
       const result = await signIn('google', {
         redirect: true,
-        callbackUrl: '/campaigns'
+        callbackUrl: '/dashboard',
       });
 
       if (!result) {

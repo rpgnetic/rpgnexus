@@ -1,5 +1,6 @@
 'use client';
 
+import { signOut, useSession } from 'next-auth/react';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Container, Grid2 } from '@mui/material';
@@ -27,6 +28,8 @@ import styles from './styles.module.scss';
 import { Input } from '@/components/ui/input';
 
 export default function Dashboard() {
+  const { data: session } = useSession();
+
   const randomMock = [
     {
       id: 1,
@@ -102,21 +105,21 @@ export default function Dashboard() {
           <div className={styles.userContainer}>
             <div className={styles.imageContainer}>
               <Avatar>
-                <AvatarImage
-                  src="https://i.pinimg.com/736x/d1/15/0c/d1150cc4e1f8c7111cd8c03aa949b782.jpg"
-                  alt="Foto de perfil"
-                />
+                <AvatarImage src={session?.user.image} alt="Foto de perfil" />
                 <AvatarFallback
                   style={{ color: '#FFF', background: '#2478A8' }}
                   color="#FFF"
                 >
-                  SF
+                  {session?.user.name?.split(' ')[0][0]}
+                  {session?.user.name?.split(' ')[1][0]}
                 </AvatarFallback>
               </Avatar>
             </div>
-            <Label className={styles.userName}>PicantePuppet15 (Samuel)</Label>
+            <Label className={styles.userName}>
+              {session?.user.name?.split(' ')[0]}
+            </Label>
           </div>
-          <Button className={styles.logoffButton}>
+          <Button onClick={() => signOut()} className={styles.logoffButton}>
             Sair <LogoutIcon fontSize="small" />
           </Button>
         </div>
