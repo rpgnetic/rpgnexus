@@ -6,14 +6,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { signIn } from 'next-auth/react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Form,
   FormControl,
@@ -21,7 +16,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 import styles from './page.module.css';
 import logo from '../../public/logo.svg';
 
@@ -37,8 +32,8 @@ export default function Home() {
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
-      password: ''
-    }
+      password: '',
+    },
   });
 
   const onSubmit = async (data: LoginFormValues) => {
@@ -88,7 +83,10 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className={styles.form}
+              >
                 <FormField
                   control={form.control}
                   name="email"
@@ -122,7 +120,10 @@ export default function Home() {
                 </Button>
               </form>
             </Form>
-            <Button onClick={handleGoogleSignIn} className={styles.googleButton}>
+            <Button
+              onClick={handleGoogleSignIn}
+              className={styles.googleButton}
+            >
               Entrar com Google
             </Button>
             <div className={styles.links}>
