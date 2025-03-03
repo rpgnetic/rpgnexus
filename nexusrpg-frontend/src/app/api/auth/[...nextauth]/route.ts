@@ -33,7 +33,7 @@ const handler = NextAuth({
     callbacks: {
         async redirect({ url, baseUrl }) {
             if (url.startsWith(baseUrl)) return url;
-            return baseUrl + "/campaigns";
+            return baseUrl + "/dashboard";
         },
         async session({ session, token }) {
             if (session.user) {
