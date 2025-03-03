@@ -15,15 +15,29 @@ const handler = NextAuth({
             }
         }),
     ],
+    session: {
+        strategy: "jwt",
+        maxAge: 30 * 24 * 60 * 60, // 30 dias
+    },
+    cookies: {
+        state: {
+            name: 'next-auth.state',
+            options: {
+                httpOnly: true,
+                sameSite: 'lax',
+                path: '/',
+                secure: process.env.NODE_ENV === 'production'
+            }
+        }
+    },
     callbacks: {
         async redirect({ url, baseUrl }) {
-            // Garante que o redirecionamento seja para uma URL válida
-            if (url.startsWith("/")) return `${baseUrl}${url}`
-            else if (new URL(url).origin === baseUrl) return url
-            return baseUrl
+            if (url.startsWith(baseUrl)) return url;
+            return baseUrl + "/campaigns";
         },
         async session({ session, token }) {
             if (session.user) {
+                session.user.id = token.sub;
                 session.user.accessToken = token.accessToken as string;
             }
             return session;
@@ -38,9 +52,6 @@ const handler = NextAuth({
     pages: {
         signIn: "/",
         error: "/error",
-    },
-    session: {
-        strategy: "jwt",
     },
     debug: process.env.NODE_ENV === 'development',
 });

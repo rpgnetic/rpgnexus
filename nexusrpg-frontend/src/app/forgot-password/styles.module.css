@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Iceberg&family=Open+Sans:wght@300&display=swap");
-
 .page {
   --gray-rgb: 0, 0, 0;
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
@@ -197,9 +195,8 @@ a.secondary {
 }
 
 .title {
-  font-family: "Iceberg", sans-serif;
   color: white;
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 700;
   text-align: center;
   margin: 0;

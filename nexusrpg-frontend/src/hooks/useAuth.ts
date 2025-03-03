@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -16,8 +16,8 @@ export function useAuth() {
       setError(null);
       
       const result = await signIn('google', {
-        redirect: true,
-        callbackUrl: '/campaigns'
+        callbackUrl: '/campaigns',
+        redirect: false,
       });
 
       if (!result) {
@@ -33,18 +33,7 @@ export function useAuth() {
       }
     } catch (error) {
       console.error('Erro ao fazer login com Google:', error);
-      setError('Falha ao realizar login com Google');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleSignOut = async () => {
-    try {
-      setIsLoading(true);
-      await signOut({ callbackUrl: '/' });
-    } catch (error) {
-      console.error('Erro ao fazer logout:', error);
+      setError(error instanceof Error ? error.message : 'Erro ao fazer login');
     } finally {
       setIsLoading(false);
     }
@@ -55,8 +44,7 @@ export function useAuth() {
     status,
     isLoading,
     error,
-    handleGoogleSignIn,
-    handleSignOut,
+      handleGoogleSignIn,
     isAuthenticated: status === 'authenticated',
   };
 }

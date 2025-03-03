@@ -29,7 +29,7 @@ import { useAuth } from '@/hooks/useAuth';
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function Home() {
-  const { handleGoogleSignIn, isLoading } = useAuth();
+  const { handleGoogleSignIn, isLoading, error } = useAuth();
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -39,7 +39,6 @@ export default function Home() {
   });
 
   const onSubmit = async (data: LoginFormValues) => {
-    // Implementar depois que tivermos o provider de credenciais
     console.log(data);
   };
 
@@ -55,7 +54,7 @@ export default function Home() {
             priority
             className={styles.logo}
           />
-          <h1 className={styles.title}>RPG Nexus</h1>
+          <h1 className={styles.title}>RPG NEXUS</h1>
         </div>
 
         <Card className={styles.card}>

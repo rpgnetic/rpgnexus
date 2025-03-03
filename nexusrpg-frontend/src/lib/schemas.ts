@@ -23,3 +23,15 @@ export const loginSchema = z.object({
   email: z.string().email("Email inválido"),
   password: z.string().min(8, "Senha deve ter pelo menos 8 caracteres"),
 });
+
+export const resetPasswordSchema = z
+  .object({
+    password: z.string().min(8, "Senha deve ter pelo menos 8 caracteres"),
+    confirmPassword: z
+      .string()
+      .min(8, "Senha deve ter pelo menos 8 caracteres"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "As senhas não coincidem",
+    path: ["confirmPassword"],
+  });
