@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,15 +18,13 @@ import {
 } from '@/components/ui/form';
 import styles from './page.module.css';
 import logo from '../../public/logo.svg';
-
-const loginSchema = z.object({
-  email: z.string().email('Email inválido'),
-  password: z.string().min(8, 'Senha deve ter pelo menos 8 caracteres'),
-});
+import { loginSchema } from '@/lib/schemas';
+import { useAuth } from '@/hooks/useAuth';
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function Home() {
+  const { handleGoogleSignIn, isLoading } = useAuth();
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -37,29 +34,8 @@ export default function Home() {
   });
 
   const onSubmit = async (data: LoginFormValues) => {
-    try {
-      const result = await signIn('credentials', {
-        redirect: false,
-        email: data.email,
-        password: data.password,
-      });
-
-      if (result?.error) {
-        console.error('Erro ao fazer login:', result.error);
-      } else {
-        console.log('Login bem-sucedido');
-      }
-    } catch (error) {
-      console.error('Erro ao fazer login:', error);
-    }
-  };
-
-  const handleGoogleSignIn = async () => {
-    try {
-      await signIn('google', { callbackUrl: 'http://localhost:3000' });
-    } catch (error) {
-      console.error('Erro ao fazer login com Google:', error);
-    }
+    // Implementar depois que tivermos o provider de credenciais
+    console.log(data);
   };
 
   return (
@@ -94,7 +70,7 @@ export default function Home() {
                     <FormItem className={styles.inputGroup}>
                       <FormLabel>E-mail</FormLabel>
                       <FormControl>
-                        <Input type="email" {...field} />
+                        <Input type="email" {...field} disabled={isLoading} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -108,24 +84,36 @@ export default function Home() {
                     <FormItem className={styles.inputGroup}>
                       <FormLabel>Senha</FormLabel>
                       <FormControl>
-                        <Input type="password" {...field} />
+                        <Input
+                          type="password"
+                          {...field}
+                          disabled={isLoading}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
 
-                <Button type="submit" className={styles.submitButton}>
-                  Entrar
+                <Button
+                  type="submit"
+                  className={styles.submitButton}
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Entrando...' : 'Entrar'}
                 </Button>
               </form>
             </Form>
+
             <Button
               onClick={handleGoogleSignIn}
               className={styles.googleButton}
+              disabled={isLoading}
+              type="button"
             >
-              Entrar com Google
+              {isLoading ? 'Carregando...' : 'Entrar com Google'}
             </Button>
+
             <div className={styles.links}>
               <Link href="/register" className={styles.link}>
                 Criar Conta
