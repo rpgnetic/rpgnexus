@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RpgnexusApplication {
+public class RpgNexusApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RpgnexusApplication.class, args);
+		SpringApplication.run(RpgNexusApplication.class, args);
 	}
 
 }
