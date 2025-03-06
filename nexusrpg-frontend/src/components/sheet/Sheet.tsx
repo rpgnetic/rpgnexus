@@ -14,12 +14,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { sheetSchema, SheetFormValues, fieldConfigs, skillConfigs } from '@/lib/schemas/sheetSchema';
 import styles from './styles.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { SkillBox } from '../skillBox/SkillBox';
+import { SheetWebSocket } from '@/lib/websocket';
 
 export default function RPGSheet() {
     const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+    const [ws, setWs] = useState<SheetWebSocket | null>(null);
 
     const form = useForm<SheetFormValues>({
         resolver: zodResolver(sheetSchema),
@@ -53,6 +55,19 @@ export default function RPGSheet() {
         },
     });
 
+    useEffect(() => {
+        const wsInstance = new SheetWebSocket('sheet-id-123', 'user-id-456');
+        setWs(wsInstance);
+
+        wsInstance.connect((update) => {
+            Object.entries(update).forEach(([field, value]) => {
+                form.setValue(field as any, value);
+            });
+        });
+
+        return () => wsInstance.disconnect();
+    }, []);
+
     const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
@@ -67,6 +82,7 @@ export default function RPGSheet() {
 
     const onSubmit = (data: SheetFormValues) => {
         console.log(data);
+        ws?.sendUpdate(data);
     };
 
     return (

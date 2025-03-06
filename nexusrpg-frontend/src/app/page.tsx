@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/form';
 import styles from './page.module.css';
 import logo from '../../public/logo.svg';
-import { loginSchema } from '@/lib/schemas';
+import { loginSchema } from '@/lib/schemas/schemas';
 import { useAuth } from '@/hooks/useAuth';
 
 type LoginFormValues = z.infer<typeof loginSchema>;
