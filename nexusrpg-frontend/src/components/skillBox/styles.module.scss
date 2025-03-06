@@ -1,0 +1,92 @@
+.skillBox {
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0;
+}
+
+.skillContent {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.skillCheckbox {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #7f4f24;
+    
+    &[data-state="checked"] {
+        background-color: #7f4f24;
+        color: white;
+    }
+}
+
+.skillLabel {
+    flex: 1;
+    font-size: 1rem;
+    color: #582f0e;
+    font-weight: 500;
+}
+
+.skillValues {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.skillInput {
+    width: 60px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.1rem;
+    border: 2px solid #7f4f24;
+    border-radius: 4px;
+    
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+.diceButton {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 2px solid #7f4f24;
+    background: white;
+    color: #7f4f24;
+    
+    &:hover {
+        background: #f5e6d3;
+        color: #582f0e;
+    }
+}
+
+.diceIcon {
+    width: 16px;
+    height: 16px;
+}
+
+.baseValue {
+    font-size: 0.8rem;
+    color: #666;
+    min-width: 30px;
+    text-align: right;
+    
+    &::after {
+        content: '%';
+        margin-left: 2px;
+    }
+}
+
+.skillCategory {
+    padding: 1rem;
+    
+    h2 {
+        font-size: 1.1rem;
+        color: #582f0e;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #7f4f24;
+    }
+}

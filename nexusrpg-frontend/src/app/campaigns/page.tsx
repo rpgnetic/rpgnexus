@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import styles from './styles.module.css';
 import ProtectedRoute from '@/components/ProtectedRoute';
-
+import RPGSheet from '@/components/sheet/Sheet';
 export default function Profile() {
     const { data: session, status } = useSession();
     const router = useRouter();
@@ -27,16 +27,7 @@ export default function Profile() {
     return (
         <ProtectedRoute>
             <div className={styles.profilePage}>
-                <div className={styles.content}>
-                    <h1 className={styles.title}>Perfil do Usuário</h1>
-                    <div className={styles.userInfo}>
-                        <p><strong>Nome:</strong> {session?.user?.name}</p>
-                        <p><strong>Email:</strong> {session?.user?.email}</p>
-                    </div>
-                    <button onClick={() => signOut()} className={styles.signOutButton}>
-                        Sair
-                    </button>
-                </div>
+                <RPGSheet />
             </div>
         </ProtectedRoute>
     );
