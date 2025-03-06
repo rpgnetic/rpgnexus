@@ -24,7 +24,7 @@ import { useAuth } from '@/hooks/useAuth';
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function Home() {
-  const { handleGoogleSignIn, isLoading, error } = useAuth();
+  const { handleGoogleSignIn, isLoading } = useAuth();
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {

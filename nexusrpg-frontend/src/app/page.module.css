@@ -70,7 +70,10 @@
   padding: 0 20px;
   border: none;
   border: 1px solid transparent;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -171,7 +174,7 @@ a.secondary {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("/background.jpeg") no-repeat center center fixed;
+  background: url("/background_3.png") no-repeat center center fixed;
   background-size: cover;
   padding: 20px;
 }
