@@ -12,4 +12,5 @@ import br.com.rpgnetic.rpgnexus.auth.entities.User;
 @Repository
 public interface CampaignRepository extends JpaRepository<Campaign, UUID> {
     List<Campaign> findByOwner(User owner);
+    Campaign findByInviteCode(String inviteCode);
 }

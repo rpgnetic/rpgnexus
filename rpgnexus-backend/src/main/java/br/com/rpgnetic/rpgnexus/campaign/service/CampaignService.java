@@ -28,12 +28,22 @@ public class CampaignService {
         return campaign;
     }
 
+    public Campaign addUserToCampaign(Campaign campaign, User user) {
+        CampaignMember campaignMember = new CampaignMember(campaign, user);
+        campaignMemberRepository.save(campaignMember);
+        return campaign;
+    }
+
     public List<Campaign> getCampaignList(User user) {
         return campaignRepository.findByOwner(user);
     }
 
     public Campaign getCampaignById(UUID campaignId) {
         return campaignRepository.findById(campaignId).get();
+    }
+
+    public Campaign getCampaignByInviteCode(String inviteCode) {
+        return campaignRepository.findByInviteCode(inviteCode);
     }
 
     public List<CampaignMember> getCampaignMemberList(Campaign campaign) {

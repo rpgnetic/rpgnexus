@@ -24,8 +24,6 @@ import br.com.rpgnetic.rpgnexus.campaign.entities.Campaign;
 import br.com.rpgnetic.rpgnexus.campaign.entities.CampaignMember;
 import br.com.rpgnetic.rpgnexus.campaign.enums.GameSystem;
 import br.com.rpgnetic.rpgnexus.campaign.service.CampaignService;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
 @RequestMapping("/api/v1/campaign")
@@ -35,6 +33,15 @@ public class CampaignController {
 
     @Autowired
     public UserService userService;
+
+    @PostMapping("/join/{inviteCode}")
+    public ResponseEntity<Void> joinCampaign(@PathVariable String inviteCode, Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        Campaign campaign = campaignService.getCampaignByInviteCode(inviteCode);
+        campaignService.addUserToCampaign(campaign, user);
+
+        return ResponseEntity.ok().build();
+    }
 
     @GetMapping("/members/{campaignId}")
     public ResponseEntity<List<UserMemberResponseDTO>> getMemberList(@PathVariable UUID campaignId) {
