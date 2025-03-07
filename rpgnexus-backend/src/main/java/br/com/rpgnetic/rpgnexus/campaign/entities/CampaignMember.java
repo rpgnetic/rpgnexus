@@ -3,6 +3,7 @@ package br.com.rpgnetic.rpgnexus.campaign.entities;
 import java.time.LocalDateTime;
 
 import br.com.rpgnetic.rpgnexus.auth.entities.User;
+import br.com.rpgnetic.rpgnexus.campaign.enums.MemberRole;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,17 +36,29 @@ public class CampaignMember {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Column(name = "member_role")
+    private MemberRole memberRole;
+
     @Column(nullable = false, name = "joined_at")
     private LocalDateTime joinedAt;
 
     public CampaignMember() {
         this.joinedAt = LocalDateTime.now();
+        this.memberRole = MemberRole.PLAYER;
+
     }
 
     public CampaignMember(Campaign campaign, User user) {
         this();
         this.campaign = campaign;
         this.user = user;
+    }
+
+    public CampaignMember(Campaign campaign, User user, MemberRole memberRole) {
+        this();
+        this.campaign = campaign;
+        this.user = user;
+        this.memberRole = memberRole;
     }
 
     public Long getId() {
@@ -80,5 +93,11 @@ public class CampaignMember {
         this.joinedAt = joinedAt;
     }
 
-    
+    public MemberRole getMemberRole() {
+        return memberRole;
+    }
+
+    public void setMemberRole(MemberRole memberRole) {
+        this.memberRole = memberRole;
+    }
 }
