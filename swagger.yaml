@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: Authentication API
+  description: API para autenticação de usuários
+  version: 1.0.0
+
+servers:
+  - url: http://springapp:8080
+    description: Servidor local
+
+paths:
+  /auth/login:
+    post:
+      summary: Autenticar usuário
+      description: Faz login com credenciais e retorna um token JWT.
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthenticationDTO"
+      responses:
+        "200":
+          description: Sucesso - retorna o token JWT
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponseDTO"
+        "400":
+          description: Requisição inválida (credenciais incorretas)
+
+  /auth/register:
+    post:
+      summary: Registrar um novo usuário
+      description: Cria uma nova conta de usuário.
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterDTO"
+      responses:
+        "200":
+          description: Usuário registrado com sucesso
+        "400":
+          description: Erro - Nome de usuário ou e-mail já existe
+
+components:
+  schemas:
+    AuthenticationDTO:
+      type: object
+      properties:
+        login:
+          type: string
+          example: "usuario123"
+        password:
+          type: string
+          format: password
+          example: "senhaSegura123"
+
+    RegisterDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "John Doe"
+        username:
+          type: string
+          example: "johndoe"
+        email:
+          type: string
+          format: email
+          example: "johndoe@email.com"
+        password:
+          type: string
+          format: password
+          example: "senhaForte123"
+
+    LoginResponseDTO:
+      type: object
+      properties:
+        token:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."

@@ -13,11 +13,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import br.com.rpgnetic.rpgnexus.auth.configs.filter.SecurityFilter;
 
 @Configuration
 @EnableWebSecurity
+@CrossOrigin(origins = "*")
 public class SecurityConfigurations {
     @Autowired
     private SecurityFilter securityFilter;
@@ -27,6 +29,7 @@ public class SecurityConfigurations {
             throws Exception {
         http
             .csrf(csrf -> csrf.disable())
+            .cors(cors -> cors.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
