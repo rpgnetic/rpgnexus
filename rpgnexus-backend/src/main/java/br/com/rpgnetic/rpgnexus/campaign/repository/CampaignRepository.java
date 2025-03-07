@@ -1,0 +1,13 @@
+package br.com.rpgnetic.rpgnexus.campaign.repository;
+
+import java.util.UUID;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import br.com.rpgnetic.rpgnexus.campaign.entities.Campaign;
+
+@Repository
+public interface CampaignRepository extends JpaRepository<Campaign, UUID> {
+    
+}
