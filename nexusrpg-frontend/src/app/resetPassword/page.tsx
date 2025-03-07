@@ -21,7 +21,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import styles from './styles.module.css';
-import { resetPasswordSchema } from '@/lib/schemas';
+import { resetPasswordSchema } from '@/lib/schemas/schemas';
 
 type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
 

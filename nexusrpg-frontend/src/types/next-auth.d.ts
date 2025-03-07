@@ -1,7 +1,6 @@
-import 'next-auth';
-import { JWT } from 'next-auth/jwt';
+import "next-auth";
 
-declare module 'next-auth' {
+declare module "next-auth" {
   interface Session {
     user: {
       id?: string;
@@ -9,11 +8,11 @@ declare module 'next-auth' {
       email?: string;
       image?: string;
       accessToken?: string;
-    }
+    };
   }
 }
 
-declare module 'next-auth/jwt' {
+declare module "next-auth/jwt" {
   interface JWT {
     accessToken?: string;
   }
