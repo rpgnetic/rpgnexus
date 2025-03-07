@@ -1,14 +1,14 @@
 package br.com.rpgnetic.rpgnexus.campaign.dtos;
 
-public class CreateCampaignRequestDTO {
+public class CampaignRequestDTO {
     private String name;
     private String description;
     private String gameSystem;
 
-    public CreateCampaignRequestDTO() {
+    public CampaignRequestDTO() {
     }
 
-    public CreateCampaignRequestDTO(String name, String description, String gameSystem) {
+    public CampaignRequestDTO(String name, String description, String gameSystem) {
         this.name = name;
         this.description = description;
         this.gameSystem = gameSystem;
