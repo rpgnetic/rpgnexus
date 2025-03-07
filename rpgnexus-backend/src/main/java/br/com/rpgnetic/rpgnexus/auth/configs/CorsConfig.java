@@ -23,23 +23,8 @@ public class CorsConfig implements WebMvcConfigurer {
                 registry.addMapping("/**") // Applies to all endpoints
                         .allowedOriginPatterns("*", "http://springapp:8081", "http://localhost:8081") // Allows all origins
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow all HTTP methods
-                        .allowedHeaders("*") // Allows all headers
-                        .allowCredentials(false); // If true, cookies will be allowed
+                        .allowedHeaders("*"); // Allows all headers
             }
         };
-    }
-
-    @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        
-        config.setAllowCredentials(true);
-        config.setAllowedOriginPatterns(List.of("*"));  // Permite todas as origens
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
     }
 }
