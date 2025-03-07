@@ -1,13 +1,13 @@
 'use client';
 
-import { useSession, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import styles from './styles.module.css';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import RPGSheet from '@/components/sheet/Sheet';
 export default function Profile() {
-    const { data: session, status } = useSession();
+    const { status } = useSession();
     const router = useRouter();
 
     useEffect(() => {

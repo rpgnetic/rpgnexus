@@ -1,0 +1,112 @@
+.weaponContainer {
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid #7f4f24;
+}
+
+.weaponsGrid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.weaponCard {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid #7f4f24;
+    margin-top: 2rem;
+    border-radius: 8px;
+}
+
+.weaponHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.nameField {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.successRates {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.weaponStats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.cardHeader {
+    border-bottom: 1px solid #7f4f24;
+    
+    h2 {
+        color: #582f0e;
+        font-size: 1.5rem;
+    }
+}
+
+.weaponForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.weaponGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    align-items: start;
+}
+
+.weaponInput {
+    background: white;
+    border: 2px solid #7f4f24;
+    border-radius: 4px;
+    padding: 0.5rem;
+    width: 100%;
+    
+    &:focus {
+        outline: none;
+        border-color: #582f0e;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.addButton {
+    background-color: #7f4f24;
+    color: white;
+    
+    &:hover {
+        background-color: #582f0e;
+    }
+}
+
+@media (max-width: 768px) {
+    .successRates {
+        grid-template-columns: 1fr;
+    }
+    
+    .weaponStats {
+        grid-template-columns: 1fr;
+    }
+
+    .weaponGrid {
+        grid-template-columns: 1fr;
+    }
+}
