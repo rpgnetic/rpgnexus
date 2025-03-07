@@ -115,6 +115,10 @@
           }
         }
       }
+
+      [hidden]:where(:not([hidden="until-found"])) {
+        display: none !important;
+      }
     }
   }
 }

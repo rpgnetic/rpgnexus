@@ -83,8 +83,8 @@
     width: 100%;
 }
 
-.personalInfo{
-    height: 100%;   
+.personalInfo {
+    height: 100%;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 6px;
     padding: 1.5rem;
@@ -138,7 +138,7 @@
 }
 
 .attributeBox {
-    width: 160px;
+    width: 100%;
     height: 160px;
     padding: 1rem;
     border: 2px solid #7f4f24;
@@ -149,6 +149,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
     @media (max-width: 480px) {
         width: 120px;
         height: 120px;
@@ -167,7 +168,7 @@
 }
 
 .mainValue {
-    width: 90px;
+    width: 100%;
     height: 90px;
     font-size: 2.5rem;
     font-weight: bold;
@@ -180,11 +181,13 @@
     align-items: center;
     justify-content: center;
     -moz-appearance: textfield;
+
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
+
     @media (max-width: 480px) {
         width: 60px;
         height: 60px;
@@ -208,16 +211,17 @@
     border-radius: 4px;
     background: white;
     color: #333 !important;
-    
+
     &::placeholder {
         color: #666;
         opacity: 1;
     }
-    
+
     &:focus {
         background-color: white;
         color: #333 !important;
-        & + .formLabel {
+
+        &+.formLabel {
             color: #582f0e !important;
             opacity: 1 !important;
         }
@@ -235,6 +239,7 @@
     border-radius: 4px;
     background: white;
     -moz-appearance: textfield;
+
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -348,11 +353,11 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    
+
     @media (max-width: 1200px) {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
     }
@@ -362,7 +367,7 @@
     &:not(:last-child) {
         border-right: 1px solid rgba(127, 79, 36, 0.2);
         padding-right: 1rem;
-        
+
         @media (max-width: 768px) {
             border-right: none;
             border-bottom: 1px solid rgba(127, 79, 36, 0.2);
@@ -404,7 +409,7 @@
     font-size: 1.1rem;
     border: 2px solid #7f4f24;
     border-radius: 4px;
-    
+
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
         -webkit-appearance: none;
