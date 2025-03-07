@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Authentication API
-  description: API para autenticação de usuários
+  description: API para autenticação de usuários e gerenciamento de campanhas
   version: 1.0.0
 
 servers:
@@ -47,7 +47,78 @@ paths:
         "400":
           description: Erro - Nome de usuário ou e-mail já existe
 
+  /api/v1/campaign/join/{inviteCode}:
+    post:
+      summary: Entrar em uma campanha usando um código de convite
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: inviteCode
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Usuário entrou na campanha com sucesso
+
+  /api/v1/campaign/members/{campaignId}:
+    get:
+      summary: Obter lista de membros de uma campanha
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: campaignId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Lista de membros da campanha
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserMemberResponseDTO"
+
+  /api/v1/campaign:
+    get:
+      summary: Obter lista de campanhas
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Lista de campanhas disponíveis
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CampaignResponseDTO"
+    post:
+      summary: Criar uma nova campanha
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignRequestDTO"
+      responses:
+        "201":
+          description: Campanha criada com sucesso
+
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
   schemas:
     AuthenticationDTO:
       type: object
@@ -84,3 +155,41 @@ components:
         token:
           type: string
           example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
+    CampaignRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        gameSystem:
+          type: string
+
+    CampaignResponseDTO:
+      type: object
+      properties:
+        campaignId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        gameSystem:
+          type: string
+        inviteCode:
+          type: string
+
+    UserMemberResponseDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        username:
+          type: string
+        joinedAt:
+          type: string
+          format: date-time
+        memberRole:
+          type: string
