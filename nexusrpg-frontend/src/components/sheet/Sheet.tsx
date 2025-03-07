@@ -18,6 +18,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { SkillBox } from '../skillBox/SkillBox';
 import { SheetWebSocket } from '@/lib/websocket';
+import WeaponInventory from '../weaponInventory/WeaponInventory';
 
 export default function RPGSheet() {
     const [photoPreview, setPhotoPreview] = useState<string | null>(null);
@@ -61,12 +62,12 @@ export default function RPGSheet() {
 
         wsInstance.connect((update) => {
             Object.entries(update).forEach(([field, value]) => {
-                form.setValue(field as any, value);
+                form.setValue(field as keyof SheetFormValues, value);
             });
         });
 
         return () => wsInstance.disconnect();
-    }, []);
+    }, [form, form.control]);
 
     const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -280,6 +281,10 @@ export default function RPGSheet() {
                                     </div>
                                 ))}
                             </div>
+                        </div>
+
+                        <div className={styles.weaponContainer}>
+                            <WeaponInventory onWeaponChange={() => { }} />
                         </div>
 
                         <Button type="submit" className={styles.submitButton}>
